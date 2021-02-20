@@ -1,0 +1,49 @@
+.header {
+  background-color: #fff;
+  padding: 20px;
+}
+
+.header-container {
+  max-width: 1080px;
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header img {
+  width: 45px;
+  height: auto;
+}
+
+.user-menu {
+  display: flex;
+  justify-content: space-around;
+}
+
+.user-menu button {
+  cursor: pointer;
+  border: 2px solid #65d49a;
+  border-radius: 10px;
+  padding: 0.5rem 1.5rem;
+  margin: 0.5rem;
+  color: #65d49a;
+  transition: all 0.3;
+  font-size: 1rem;
+}
+
+.user-menu button:hover {
+  color: #fff;
+  animation: buttonColor 1s forwards;
+}
+
+@keyframes buttonColor {
+  from {
+    background-color: #fff;
+    color: #65d49a;
+  }
+  to {
+    background-color: #65d49a;
+    color: #fff;
+  }
+}
