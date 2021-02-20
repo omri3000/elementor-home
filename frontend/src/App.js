@@ -2,6 +2,7 @@ import { useState } from "react";
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import Header from "./components/Header/Header";
+import Container from "./components/Container/Container";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import PrivateScreen from "./components/privateScreen/PrivateScreen";
 import "./App.css";
@@ -18,8 +19,10 @@ const App = () => {
       <div className="app">
         <Switch>
           <PrivateRoute exact path="/" component={PrivateScreen} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Signup} />
+          <Container>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Signup} />
+          </Container>
         </Switch>
       </div>
     </Router>
