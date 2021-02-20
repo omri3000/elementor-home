@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
+import Header from "../Header/Header";
 import axios from "axios";
 
 const PrivateScreen = ({ history }) => {
@@ -42,8 +43,8 @@ const PrivateScreen = ({ history }) => {
     <span className="error-message">{error}</span>
   ) : (
     <>
+      <Header logout={logoutHandler} />
       <div style={{ background: "green", color: "white" }}>{privateData}</div>
-      <button onClick={logoutHandler}>Logout</button>
     </>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./Login.css";
 
 const Login = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -24,24 +23,26 @@ const Login = ({ history }) => {
       },
     };
 
-    if (email.trim() == "") {
-      setErrors((prev) => [...prev, "Invalid username or password"]);
+    if (email.trim() == "" || password == "") {
+      setErrors(() => ["Invalid username or password"]);
+    } else if (errors.length == 0) {
+      try {
+        const { data } = await axios.post(
+          "http://localhost:4000/api/auth/login",
+          {
+            email,
+            password,
+          },
+          config
+        );
+
+        localStorage.setItem("authToken", data.token);
+
+        history.push("/");
+      } catch (error) {
+        setErrors(() => ["Invalid username or password"]);
+      }
     }
-
-    try {
-      const { data } = await axios.post(
-        "http://localhost:4000/api/auth/login",
-        {
-          email,
-          password,
-        },
-        config
-      );
-
-      localStorage.setItem("authToken", data.token);
-
-      history.push("/");
-    } catch (error) {}
   };
 
   const handleCahngeUsername = (e) => {

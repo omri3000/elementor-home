@@ -32,7 +32,7 @@ mongoose
     useFindAndModify: false,
     useCreateIndex: true,
   })
-  .catch((e) => console.log(e));
+  .catch((error) => console.log(error.message));
 
 app.get("/", (req, res) => {
   res.send(`Node app is running on port ${PORT}`);

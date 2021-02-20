@@ -2,7 +2,6 @@ import { Redirect, Route } from "react-router-dom";
 
 const PrivateRoute = ({ compoent: Component, ...rest }) => {
   const isLogin = (props) => {
-    console.log(localStorage.getItem("authToken"));
     if (localStorage.getItem("authToken")) {
       return <Component {...props} />;
     } else {

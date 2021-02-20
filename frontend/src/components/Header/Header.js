@@ -2,9 +2,8 @@ import React, { useRef } from "react";
 import logo from "../../images/logo.png";
 import "./styles.css";
 
-const Header = () => {
+const Header = ({ logout }) => {
   const user = { name: "" };
-  const logout = false;
 
   return (
     <div className="header">

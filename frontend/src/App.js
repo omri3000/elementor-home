@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import Header from "./components/Header/Header";
@@ -7,11 +6,6 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import PrivateScreen from "./components/privateScreen/PrivateScreen";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-const DEFAULT_USER = {
-  name: "",
-  email: "",
-};
 
 const App = () => {
   return (

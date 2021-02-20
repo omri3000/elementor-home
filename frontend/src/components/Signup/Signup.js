@@ -60,7 +60,9 @@ const Signup = ({ history }) => {
               value={values.username}
               onChange={handleChange}
             />
-            {errors.email && <p>{errors.email}</p>}
+            {errors.username && (
+              <span className="error-text">{errors.username}</span>
+            )}
           </div>
           <div className="form-inputs">
             <label htmlFor="email">Email</label>
@@ -73,7 +75,7 @@ const Signup = ({ history }) => {
               value={values.email}
               onChange={handleChange}
             />
-            {errors.email && <p>{errors.email}</p>}
+            {errors.email && <span className="error-text">{errors.email}</span>}
           </div>
           <div className="form-inputs">
             <label htmlFor="password">Password</label>
@@ -86,7 +88,9 @@ const Signup = ({ history }) => {
               value={values.password}
               onChange={handleChange}
             />
-            {errors.password && <p>{errors.password}</p>}
+            {errors.password && (
+              <span className="error-text">{errors.password}</span>
+            )}
           </div>
           <div className="form-inputs">
             <label htmlFor="password2">Confirm Password</label>
@@ -99,7 +103,9 @@ const Signup = ({ history }) => {
               value={values.password2}
               onChange={handleChange}
             />
-            {errors.password2 && <p>{errors.password2}</p>}
+            {errors.password2 && (
+              <span className="error-text">{errors.password2}</span>
+            )}
           </div>
           <button className="form-input-btn" type="submit">
             Sign up
