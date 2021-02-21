@@ -7,8 +7,10 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
   title: String,
   message: String,
-  creator: String,
-  tags: [String],
+  creator: {
+    type: String,
+    required: [true, "Please provide a creator"],
+  },
   likeCount: {
     type: Number,
     default: 0,

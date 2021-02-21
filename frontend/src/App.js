@@ -12,7 +12,7 @@ const App = () => {
     <Router>
       <div className="app">
         <Switch>
-          <PrivateRoute exact path="/" component={PrivateScreen} />
+          <PrivateRoute exact path="/" comp={PrivateScreen} />
           <Container>
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Signup} />

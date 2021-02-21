@@ -1,31 +1,21 @@
-import React, { useRef } from "react";
+import React from "react";
 import logo from "../../images/logo.png";
 import "./styles.css";
+import logoutIco from "../../images/exit.png";
 
-const Header = ({ logout }) => {
-  const user = { name: "" };
-
+const Header = ({ user, logout }) => {
   return (
     <div className="header">
       <div className="header-container">
         <div className="logo">
           <img src={logo} />
         </div>
-        {user.name != "" ? (
-          <div>
-            Hello, <span>{user.name}</span>
-            <button onClick={logout}>Logout</button>
-          </div>
-        ) : (
-          <div className="user-menu">
-            <div className="login">
-              <button>Login</button>
-            </div>
-            <div className="Signup">
-              <button>Signup</button>
-            </div>
-          </div>
-        )}
+        <div>
+          Hello, <span>{user.username || "guest"}</span>
+          <button onClick={logout}>
+            <img src={logoutIco} alt="logout" />
+          </button>
+        </div>
       </div>
     </div>
   );

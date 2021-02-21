@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useCallback } from "react";
 import Header from "../Header/Header";
 import axios from "axios";
+import Posts from "../Posts/Posts";
+import Form from "../Form/Form";
 
 const PrivateScreen = ({ history }) => {
   const [error, setError] = useState("");
+  const [user, setUser] = useState({});
   const [privateData, setPrivateData] = useState("");
 
   const fetchPrivateData = useCallback(async () => {
@@ -20,6 +23,7 @@ const PrivateScreen = ({ history }) => {
         config
       );
       setPrivateData(data.data);
+      setUser(data.user);
     } catch (error) {
       localStorage.removeItem("authToken");
       setError("You arf not authrized please login");
@@ -36,6 +40,7 @@ const PrivateScreen = ({ history }) => {
 
   const logoutHandler = () => {
     localStorage.removeItem("authToken");
+    setUser({});
     history.push("/login");
   };
 
@@ -43,7 +48,10 @@ const PrivateScreen = ({ history }) => {
     <span className="error-message">{error}</span>
   ) : (
     <>
-      <Header logout={logoutHandler} />
+      <Header user={user} logout={logoutHandler} />
+
+      <Posts user={user} />
+      <Form user={user} />
       <div style={{ background: "green", color: "white" }}>{privateData}</div>
     </>
   );
