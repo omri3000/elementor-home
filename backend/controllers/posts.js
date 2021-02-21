@@ -4,7 +4,11 @@ export const getPosts = async (req, res) => {
   const userId = req.params.id;
 
   try {
-    const postMessages = await PostMessage.find({ creator: userId });
+    const postMessages = await PostMessage.find({ creator: userId })
+      .sort({
+        createdAt: "desc",
+      })
+      .exec();
 
     res.status(200).json(postMessages);
   } catch (error) {

@@ -62,12 +62,19 @@ button {
   margin: 15px;
 }
 
-.form-inputs input {
+.form-inputs input,
+.form-inputs textarea {
   background-color: #eee;
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
   border-radius: 3px;
+}
+
+.form-inputs textarea {
+  border: none;
+  resize: none;
+  min-height: 100px;
 }
 
 .inner-form button {
@@ -99,4 +106,26 @@ span.error-text {
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.private-container {
+  max-width: 1080px;
+  margin: 0px auto;
+}
+
+.post-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.post-container .form-container {
+  width: 20vw;
+  max-height: 550px;
+  position: sticky;
+  top: 0;
+}
+
+.post-container .form-container .form {
+  padding: 20px 50px;
 }

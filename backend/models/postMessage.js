@@ -4,22 +4,25 @@ const Schema = mongoose.Schema;
 
 // Created dynamically Schema can be all types and can expand
 // PromotionName,Type,StartDate,EndDate,UserGroupName
-const PostSchema = new Schema({
-  title: String,
-  message: String,
-  creator: {
-    type: String,
-    required: [true, "Please provide a creator"],
+const PostSchema = new Schema(
+  {
+    title: String,
+    message: String,
+    creator: {
+      type: String,
+      required: [true, "Please provide a creator"],
+    },
+    likeCount: {
+      type: Number,
+      default: 0,
+    },
+    date: {
+      type: Date,
+      default: new Date(),
+    },
   },
-  likeCount: {
-    type: Number,
-    default: 0,
-  },
-  date: {
-    type: Date,
-    default: new Date(),
-  },
-});
+  { timestamps: true }
+);
 
 const PostMessage = mongoose.model("PostMessage", PostSchema);
 

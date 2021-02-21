@@ -7,7 +7,7 @@ import Form from "../Form/Form";
 const PrivateScreen = ({ history }) => {
   const [error, setError] = useState("");
   const [user, setUser] = useState({});
-  const [privateData, setPrivateData] = useState("");
+  const [create, setCreate] = useState(false);
 
   const fetchPrivateData = useCallback(async () => {
     const config = {
@@ -22,11 +22,10 @@ const PrivateScreen = ({ history }) => {
         "http://localhost:4000/api/private",
         config
       );
-      setPrivateData(data.data);
       setUser(data.user);
     } catch (error) {
       localStorage.removeItem("authToken");
-      setError("You arf not authrized please login");
+      setError("You are not authrized please login");
     }
   }, []);
 
@@ -44,16 +43,20 @@ const PrivateScreen = ({ history }) => {
     history.push("/login");
   };
 
+  const cearteHnadler = () => {
+    setCreate(!create);
+  };
+
   return error ? (
     <span className="error-message">{error}</span>
   ) : (
-    <>
+    <div className="private-container">
       <Header user={user} logout={logoutHandler} />
-
-      <Posts user={user} />
-      <Form user={user} />
-      <div style={{ background: "green", color: "white" }}>{privateData}</div>
-    </>
+      <div className="post-container">
+        <Posts update={create} user={user} />
+        <Form cearteHnadler={cearteHnadler} user={user} />
+      </div>
+    </div>
   );
 };
 

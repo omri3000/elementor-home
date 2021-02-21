@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-const Form = ({ user }) => {
+const Form = ({ user, cearteHnadler }) => {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
 
@@ -19,7 +19,7 @@ const Form = ({ user }) => {
       creator: user._id,
     });
 
-    console.log(data);
+    cearteHnadler();
     clear();
   };
 
@@ -28,7 +28,6 @@ const Form = ({ user }) => {
       <form className="form" onSubmit={handleCreatePost}>
         <div className="inner-form">
           <h2>Create new post</h2>
-          {/* <span className="error-text">{errors}</span> */}
           <div className="form-inputs">
             <label htmlFor="email">Title</label>
             <input
