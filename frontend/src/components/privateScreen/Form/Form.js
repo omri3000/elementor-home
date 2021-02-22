@@ -2,25 +2,54 @@ import axios from "axios";
 import { useState } from "react";
 
 const Form = ({ user, cearteHnadler }) => {
-  const [title, setTitle] = useState("");
-  const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState([]);
+
+  const [values, setValues] = useState({
+    title: "",
+    message: "",
+    selectedFile: "",
+  });
 
   const clear = () => {
-    setTitle("");
-    setMessage("");
+    setValues({
+      title: "",
+      message: "",
+      selectedFile: "",
+    });
   };
 
   const handleCreatePost = async (e) => {
     e.preventDefault();
 
-    const { data } = await axios.post("http://localhost:4000/api/posts", {
-      title,
-      message,
-      creator: user._id,
-    });
+    const { title, message, selectedFile } = values;
+
+    if (title.trim() !== "") {
+      try {
+        const { data } = await axios.post("http://localhost:4000/api/posts", {
+          title,
+          message,
+          creator: user._id,
+          selectedFile,
+        });
+      } catch (error) {
+        setErrors(() => [error.message]);
+      }
+    } else {
+      setErrors(() => ["Title is required"]);
+    }
 
     cearteHnadler();
     clear();
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setErrors([]);
+
+    setValues({
+      ...values,
+      [name]: value,
+    });
   };
 
   return (
@@ -28,6 +57,7 @@ const Form = ({ user, cearteHnadler }) => {
       <form className="form" onSubmit={handleCreatePost}>
         <div className="inner-form">
           <h2>Create new post</h2>
+          <span className="error-text">{errors}</span>
           <div className="form-inputs">
             <label htmlFor="email">Title</label>
             <input
@@ -36,8 +66,8 @@ const Form = ({ user, cearteHnadler }) => {
               name="title"
               className="form-input"
               placeholder="Title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={values.title}
+              onChange={handleChange}
             />
           </div>
           <div className="form-inputs">
@@ -48,8 +78,8 @@ const Form = ({ user, cearteHnadler }) => {
               name="message"
               className="form-input"
               placeholder="Message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              value={values.message}
+              onChange={handleChange}
             />
           </div>
           <button className="form-input-btn" type="submit">

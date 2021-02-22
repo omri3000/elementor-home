@@ -49,7 +49,7 @@ export const login = async (req, res, next) => {
 
     sendToken(user, 200, res);
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+    return next(res.status(500).json({ success: false, error: error.message }));
   }
 };
 

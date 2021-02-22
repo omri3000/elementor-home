@@ -2,3 +2,7 @@
   width: 75vw;
   margin-right: 20px;
 }
+
+.username {
+  color: rgba(0, 0, 0, 0.7);
+}

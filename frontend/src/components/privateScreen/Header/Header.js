@@ -1,7 +1,7 @@
 import React from "react";
-import logo from "../../images/logo.png";
+import logo from "../../../images/logo.png";
 import "./styles.css";
-import logoutIco from "../../images/exit.png";
+import logoutIco from "../../../images/exit.png";
 import { Link } from "react-router-dom";
 
 const Header = ({ user, logout }) => {

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import useForm from "../../hooks/useForm";
-import validate from "../helpers/validateInfo";
+import useForm from "../../../hooks/useForm";
+import validate from "../../../helpers/validateInfo";
 import { Link } from "react-router-dom";
 import axios from "axios";
 

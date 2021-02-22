@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const Login = ({ history, setUsername }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Login = ({ history }) => {
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
@@ -22,6 +24,8 @@ const Login = ({ history, setUsername }) => {
         "Content-Type": "application/json",
       },
     };
+
+    const { email, password } = values;
 
     if (email.trim() == "" || password == "") {
       setErrors(() => ["Invalid username or password"]);
@@ -45,14 +49,14 @@ const Login = ({ history, setUsername }) => {
     }
   };
 
-  const handleCahngeUsername = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setErrors([]);
-    setEmail(e.target.value);
-  };
 
-  const handleCahngePasword = (e) => {
-    setErrors([]);
-    setPassword(e.target.value);
+    setValues({
+      ...values,
+      [name]: value,
+    });
   };
 
   return (
@@ -69,7 +73,8 @@ const Login = ({ history, setUsername }) => {
               name="email"
               className="form-input"
               placeholder="Enter Your Email"
-              onChange={handleCahngeUsername}
+              value={values.email}
+              onChange={handleChange}
             />
           </div>
           <div className="form-inputs">
@@ -80,7 +85,8 @@ const Login = ({ history, setUsername }) => {
               name="password"
               className="form-input"
               placeholder="Enter Your Password"
-              onChange={handleCahngePasword}
+              value={values.password}
+              onChange={handleChange}
             />
           </div>
           <button className="form-input-btn" type="submit">

@@ -1,6 +1,6 @@
 import PostMessage from "../models/postMessage.js";
 
-export const getPosts = async (req, res) => {
+export const getPosts = async (req, res, next) => {
   const userId = req.params.id;
 
   try {
@@ -16,7 +16,7 @@ export const getPosts = async (req, res) => {
   }
 };
 
-export const createPost = async (req, res) => {
+export const createPost = async (req, res, next) => {
   const post = req.body;
 
   const newPost = new PostMessage(post);

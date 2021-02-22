@@ -1,5 +1,6 @@
 import "./styles.css";
 import { useState } from "react";
+import moment from "moment";
 
 const Post = ({ content }) => {
   const [readMore, setReadMore] = useState(false);
@@ -24,6 +25,9 @@ const Post = ({ content }) => {
           </span>
         </p>
       )}
+      <div className="created">
+        <span>{moment(content.createdAt).fromNow()}</span>
+      </div>
     </div>
   );
 };

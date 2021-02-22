@@ -4,8 +4,6 @@ import jwt from "jsonwebtoken";
 
 const Schema = mongoose.Schema;
 
-// Created dynamically Schema can be all types and can expand
-// PromotionName,Type,StartDate,EndDate,UserGroupName
 const UserSchema = new Schema(
   {
     username: {

@@ -3,6 +3,8 @@ export default function validateInfo(values) {
 
   if (!values.username) {
     errors.username = "Username required";
+  } else if (values.username.length > 15) {
+    errors.username = "The username is too long";
   }
 
   if (!values.email) {

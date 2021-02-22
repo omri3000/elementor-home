@@ -15,9 +15,14 @@ const Posts = ({ user, update }) => {
 
   return (
     <div className="posts">
-      {posts.map((post) => (
-        <Post content={post} key={post._id} />
-      ))}
+      {posts.length !== 0 ? (
+        posts.map((post) => <Post content={post} key={post._id} />)
+      ) : (
+        <h2 style={{ textAlign: "center" }}>
+          Welcom <span className="username">{user.username}</span> add your
+          first post
+        </h2>
+      )}
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback } from "react";
-import Header from "../Header/Header";
+import Header from "./Header/Header";
 import axios from "axios";
 import Posts from "../Posts/Posts";
-import Form from "../Form/Form";
+import Form from "./Form/Form";
 
 const PrivateScreen = ({ history }) => {
   const [error, setError] = useState("");

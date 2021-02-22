@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-// Mongo connetion
+// mongoose connetion
 const uri = process.env.COONNECTION_URL;
 
 mongoose
@@ -38,6 +38,7 @@ app.get("/", (req, res) => {
   res.send(`Node app is running on port ${PORT}`);
 });
 
+// routes
 app.use("/api/posts", postRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/private", privateRoutes);

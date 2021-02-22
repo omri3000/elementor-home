@@ -25,17 +25,21 @@ export const protect = async (req, res, next) => {
     const user = await User.findById(decoded.id);
 
     if (!user) {
-      res
-        .status(404)
-        .json({ success: false, error: "No user found with this ID" });
+      return next(
+        res
+          .status(404)
+          .json({ success: false, error: "No user found with this ID" })
+      );
     }
 
     req.user = user;
 
     next();
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, error: "Not authorized to access this route" });
+    return next(
+      res
+        .status(500)
+        .json({ success: false, error: "Not authorized to access this route" })
+    );
   }
 };
